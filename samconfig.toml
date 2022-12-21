@@ -1,0 +1,17 @@
+version = 0.1
+[default.build.parameters]
+beta_features = true
+[default.sync.parameters]
+beta_features = true
+
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "common-layer"
+s3_bucket = "s3-sample-bucket-name" # Update Values
+s3_prefix = "sam/layers"
+region = "ap-southeast-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM CAPABILITY_AUTO_EXPAND"
+disable_rollback = false
+image_repositories = []

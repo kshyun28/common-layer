@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    common-layer
+
+    SAM Template of shared layers for serverless applications.
+
+Resources:
+    CommonLayer:
+        Type: AWS::Serverless::LayerVersion
+        Properties:
+            # Create a layer based on the environment. We don't want the prod lib replaced with a dev version.
+            LayerName: CommonLayer
+            Description: Shared code layer for serverless applications
+            CompatibleRuntimes:
+                - nodejs16.x
+            # The following is generated when running a TypeScript compiler within buildtslayer-tf CodeBuild.
+            # esbuild is not yet supported in Layers.
+            ContentUri: ./dist
+            RetentionPolicy: Retain
+        Metadata:
+            BuildMethod: nodejs16.x
+            BuildArchitecture: arm64
